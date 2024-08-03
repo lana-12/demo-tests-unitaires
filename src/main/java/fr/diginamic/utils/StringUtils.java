@@ -1,11 +1,15 @@
 package fr.diginamic.utils;
 
+import java.text.Normalizer;
+
 /**
  * Classe qui fournit des services de traitements de chaines de caractères
  * 
  * @author DIGINAMIC
  */
 public final class StringUtils {
+
+
 
 	/**
 	 * Retourne la distance de Levenshtein entre 2 chaines de caractères
@@ -43,5 +47,36 @@ public final class StringUtils {
 			newcost = swap;
 		}
 		return cost[len0 - 1];
+	}
+
+
+	/**
+	 * Normalise une string en supp les accents,
+	 * Met Première lettre en majuscule et le reste en minuscule.
+	 *
+	 * @param word string à normaliser
+	 * @return string normalisée
+	 */
+	public static String normalize(String word) {
+		if (word == null || word.isEmpty()) {
+			return word;
+		}
+		String normalized = Normalizer.normalize(word, Normalizer.Form.NFD);
+		normalized = normalized.replaceAll("\\p{M}", "");
+		return capitalizeFirstLetter(normalized);
+	}
+
+	/**
+	 * Met la première lettre en majuscule et le reste en minuscule.
+	 *
+	 * @param word string à normaliser
+	 * @return string normalisée
+	 */
+	private static String capitalizeFirstLetter(String word) {
+		if (word == null || word.isEmpty()) {
+			return word;
+		}
+		String lowerCase = word.toLowerCase();
+		return Character.toUpperCase(lowerCase.charAt(0)) + lowerCase.substring(1);
 	}
 }

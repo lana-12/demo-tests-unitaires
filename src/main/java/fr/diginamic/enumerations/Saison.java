@@ -1,4 +1,9 @@
 package fr.diginamic.enumerations;
+
+import fr.diginamic.utils.StringUtils;
+
+import static fr.diginamic.utils.StringUtils.normalize;
+
 /**
  * Représente une saison et fournit les 4 instances de saisons.
  * 
@@ -28,17 +33,19 @@ public enum Saison {
 
 	/**
 	 * Permet de rechercher une Saison à partir de son libellé
-	 * 
+	 *
 	 * @param libelle libellé
 	 * @return {@link Saison}
 	 */
 	public static Saison valueOfLibelle(String libelle) {
-		Saison[] saisons = Saison.values();
-		for (Saison saison : saisons) {
-			if (libelle.equals(saison.getLibelle())) {
+		if (libelle == null || libelle.isEmpty()) {
+			return null;
+		}
+		String libelleNormalized = StringUtils.normalize(libelle);
+		for (Saison saison : Saison.values()) {
+			if (libelleNormalized.equals(StringUtils.normalize(saison.getLibelle()))) {
 				return saison;
 			}
-
 		}
 		return null;
 	}
@@ -50,7 +57,7 @@ public enum Saison {
 
 	/**
 	 * Getter
-	 * 
+	 *
 	 * @return the libelle
 	 */
 	public String getLibelle() {
