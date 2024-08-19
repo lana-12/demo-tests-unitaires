@@ -2,74 +2,78 @@ package fr.diginamic.enumerations;
 
 import fr.diginamic.utils.StringUtils;
 
-import static fr.diginamic.utils.StringUtils.normalize;
-
 /**
  * Représente une saison et fournit les 4 instances de saisons.
- * 
- * @author DIGINAMIC
  *
+ * @author DIGINAMIC
  */
 public enum Saison {
 
-	/** Les 4 instances de Saison */
-	PRINTEMPS("Printemps", 1), ETE("Eté", 2), AUTOMNE("Automne", 3), HIVER("Hiver", 4);
+    /**
+     * Les 4 instances de Saison
+     */
+    PRINTEMPS("Printemps", 1), ETE("Eté", 2), AUTOMNE("Automne", 3), HIVER("Hiver", 4);
 
-	/** libelle */
-	private String libelle;
-	/** ordre */
-	private int ordre;
+    /**
+     * libelle
+     */
+    private String libelle;
+    /**
+     * ordre
+     */
+    private int ordre;
 
-	/**
-	 * Constructeur
-	 * 
-	 * @param libelle libellé
-	 * @param ordre   ordre
-	 */
-	private Saison(String libelle, int ordre) {
-		this.libelle = libelle;
-		this.ordre = ordre;
-	}
+    /**
+     * Constructeur
+     *
+     * @param libelle libellé
+     * @param ordre   ordre
+     */
+    private Saison(String libelle, int ordre) {
+        this.libelle = libelle;
+        this.ordre = ordre;
+    }
 
-	/**
-	 * Permet de rechercher une Saison à partir de son libellé
-	 *
-	 * @param libelle libellé
-	 * @return {@link Saison}
-	 */
-	public static Saison valueOfLibelle(String libelle) {
-		if (libelle == null || libelle.isEmpty()) {
-			return null;
-		}
-		String libelleNormalized = StringUtils.normalize(libelle);
-		for (Saison saison : Saison.values()) {
-			if (libelleNormalized.equals(StringUtils.normalize(saison.getLibelle()))) {
-				return saison;
-			}
-		}
-		return null;
-	}
+    /**
+     * Permet de rechercher une Saison à partir de son libellé
+     *
+     * @param libelle libellé
+     * @return {@link Saison}
+     */
+    public static Saison valueOfLibelle(String libelle) {
+        if (libelle == null || libelle.isEmpty()) {
+            return null;
+        }
 
-	@Override
-	public String toString() {
-		return ordre + ". " + libelle;
-	}
+        String libelleNormalized = StringUtils.normalize(libelle);
+        for (Saison saison : Saison.values()) {
+            if (libelleNormalized.equals(StringUtils.normalize(saison.getLibelle()))) {
+                return saison;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Getter
-	 *
-	 * @return the libelle
-	 */
-	public String getLibelle() {
-		return libelle;
-	}
+    @Override
+    public String toString() {
+        return ordre + ". " + libelle;
+    }
 
-	/**
-	 * Getter
-	 * 
-	 * @return the ordre
-	 */
-	public int getOrdre() {
-		return ordre;
-	}
+    /**
+     * Getter
+     *
+     * @return the libelle
+     */
+    public String getLibelle() {
+        return libelle;
+    }
+
+    /**
+     * Getter
+     *
+     * @return the ordre
+     */
+    public int getOrdre() {
+        return ordre;
+    }
 }

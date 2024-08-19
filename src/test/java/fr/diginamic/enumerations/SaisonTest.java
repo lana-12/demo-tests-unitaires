@@ -4,10 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class SaisonTest {
 
@@ -66,7 +64,7 @@ public class SaisonTest {
     @Test
     public void TestValueOfLibelleMajMin() {
         // Arrange
-        String libelleEteMajuscule= "ETE";
+        String libelleEteMajuscule = "ETE";
         String libelleEteMinuscule = "ete"; // ok
 
         // Act
@@ -83,21 +81,22 @@ public class SaisonTest {
     @Test
     public void TestValueOfLibelleCaractereSpeciaux() {
         // Arrange
-        String libelleEteAccentMinuscul= "été";
-        String libelleAccentMajuscule= "ÉTÉ";
-//
+        String libelleEteAccentMinuscul = "été";
+        String libelleAccentMajuscule = "ÉTÉ";
+        String libelleTrim = "       ÉTÉ";
 
         // Act
         Saison saisonEteAccentMinuscul = Saison.valueOfLibelle(libelleEteAccentMinuscul);
         Saison saisonEteAccentMajuscule = Saison.valueOfLibelle(libelleAccentMajuscule);
+        Saison saisonTrim = Saison.valueOfLibelle(libelleTrim);
 
         // Assert
         assertEquals(Saison.ETE, saisonEteAccentMinuscul);
         assertEquals(Saison.ETE, saisonEteAccentMajuscule);
+        assertEquals(Saison.ETE, saisonTrim);
 
 
     }
-
 
 
 }
