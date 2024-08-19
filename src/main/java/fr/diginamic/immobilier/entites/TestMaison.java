@@ -8,6 +8,7 @@ public class TestMaison {
     public static void main(String[] args) {
 
         //Exercice 3
+        // Avant de créer une class MaisonTest j'ai testé tte les methode et essayé de voir celle qui marche and notMarche
 
         // Ce que j'ai modifier => nbPieces() => enlevé le -1
 
